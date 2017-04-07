@@ -19,6 +19,7 @@ import (
 	client "k8s.io/client-go/kubernetes"
 	"strconv"
 	"strings"
+	"fmt"
 )
 
 // ReplicaCounts provide the desired and actual number of replicas.
@@ -65,7 +66,7 @@ func scaleGenericResource(client client.Interface, kind, namespace, name, count 
 	}
 	c, err := strconv.Atoi(count)
 	if err != nil {
-		return err
+		return fmt.Errorf("Cannot parse scale by value: %s", count)
 	}
 	s.Spec.Replicas = int32(c)
 	s, err = client.Extensions().Scales(namespace).Update(kind, s)

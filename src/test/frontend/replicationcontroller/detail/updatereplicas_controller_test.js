@@ -57,8 +57,7 @@ describe('Update Replicas controller', () => {
             desiredPods: 2,
             resourceName: replicationControllerMock,
             resourceKindName: resourceKindNameMock,
-          },
-          {updateReplicasForm: {$valid: true}});
+          });
     });
   });
 
